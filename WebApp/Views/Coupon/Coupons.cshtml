@@ -1,0 +1,32 @@
+﻿@model IEnumerable<WebApp.Models.Dto.CouponDto>
+
+<a class="nav-link" asp-area="" asp-controller="Coupon" asp-action="CreateCoupon">Coupons</a>
+<table>
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Code</th>
+            <th>Discount Amout</th>
+            <th>Min Amount</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+   <tbody>
+        @foreach (var coupon in Model)
+        {
+            <tr>
+                <td>@coupon.CouponId</td>
+                <td>@coupon.CouponCode</td>
+                <td>@coupon.DiscountAmout</td>
+                <td>@coupon.MinAmount</td>
+                <td>
+                    <a asp-action="DeleteCoupon" asp-route-couponId="@coupon.CouponId" class="btn btn-danger">
+                    <i class="bi bi-trash">X</i>
+                    </a>
+                </td>
+            </tr>
+        }
+    
+   </tbody>
+   
+</table>
