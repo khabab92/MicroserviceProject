@@ -7,7 +7,6 @@ using Services.Coupon.Models.Dto;
 
 namespace Services.Coupon.Controllers
 {
-    [Route("api/coupon")]
     [ApiController]
     public class CouponApiController : ControllerBase
     {
