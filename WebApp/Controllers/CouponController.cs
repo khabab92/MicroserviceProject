@@ -21,7 +21,7 @@ namespace WebApp.Controllers
             }
             else
             {
-                TempData["Error"] = responseDto?.Message;
+                TempData["error"] = responseDto?.Message;
             }
             return View(lst);
         }
@@ -34,14 +34,14 @@ namespace WebApp.Controllers
            if (model != null)
             {
                 ResponseDto response = await _couponService.CreateCouponAsync(model);
-                if (response != null)
+                if (response != null && response.IsSuccess)
                 {
                     TempData["success"] = "Coupon Created Successfuly";
                     return RedirectToAction(nameof(Coupons));
                 }
                 else
                 {
-                    TempData["Error"] = response?.Message;
+                    TempData["error"] = response?.Message;
                 }
             }
             return View(model);
@@ -53,14 +53,14 @@ namespace WebApp.Controllers
             if (couponId != null)
             {
                 ResponseDto response = await _couponService.DeleteCouponAsync(couponId);
-                if (response != null)
+                if (response != null && response.IsSuccess == true)
                 {
                     TempData["success"] = "Coupon Deleted Successfuly";
                     return RedirectToAction(nameof(Coupons));
                 }
                 else
                 {
-                    TempData["Error"] = response?.Message;
+                    TempData["error"] = response?.Message;
                 }
             }
             return RedirectToAction(nameof(Coupons));

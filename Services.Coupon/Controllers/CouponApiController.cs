@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Services.Coupon.Data;
@@ -8,6 +9,8 @@ using Services.Coupon.Models.Dto;
 namespace Services.Coupon.Controllers
 {
     [ApiController]
+    [Route("/api/coupon")]
+    [Authorize]
     public class CouponApiController : ControllerBase
     {
         private readonly AppDbContext _db;
@@ -107,6 +110,7 @@ namespace Services.Coupon.Controllers
         }
         [HttpDelete]
         [Route("{couponId:int}")]
+        [Authorize(Roles ="ADMIN")]
         public ResponseDto Delete(int couponId)
         {
             try
